@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tenor GIF & Sticker Tester</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <h1>Tenor GIF/Sticker Tester</h1>
+
+  <!-- API KEY INPUT -->
+  <div class="api-key-block">
+    <label>
+      Tenor API key:
+      <input
+        type="password"
+        id="apikey"
+        placeholder="Paste your Tenor API key"
+        required
+      />
+    </label>
+  </div>
+
+  <form id="search-form">
+  <!-- Mode selector -->
+  <fieldset class="mode-toggle">
+    <legend>Mode:</legend>
+    <label>
+      <input type="radio" name="mode" value="search" />
+      Search
+    </label>
+    <label>
+      <input type="radio" name="mode" value="trending" checked />
+      Trending
+    </label>
+  </fieldset>
+
+  <!-- Search input -->
+  <div id="search-input-block">
+    <input type="text" id="query" placeholder="Search..." required />
+  </div>
+
+    <label>
+      Content filter:
+      <select id="contentfilter">
+        <option value="off">off (no filter)</option>
+        <option value="low">low</option>
+        <option value="medium">medium</option>
+        <option value="high">high</option>
+      </select>
+    </label>
+
+    <!-- limit захардкожен -->
+    <span>Per page: <strong>50</strong></span>
+
+    <!-- GIF / Stickers toggle -->
+    <fieldset class="type-toggle">
+      <legend>Type:</legend>
+      <label>
+        <input type="radio" name="kind" value="gif" checked />
+        GIFs
+      </label>
+      <label>
+        <input type="radio" name="kind" value="sticker" />
+        Stickers
+      </label>
+    </fieldset>
+
+    <button type="submit">Search</button>
+  </form>
+
+  <div id="status"></div>
+
+  <div id="pagination">
+    <button id="prev-page" disabled>Prev</button>
+    <button id="next-page" disabled>Next</button>
+  </div>
+
+  <div id="results"></div>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
