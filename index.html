@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Tenor GIF & Sticker Tester</title>
+  <title>Tenor GIF & Sticker</title>
   <link rel="stylesheet" href="css/styles.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
-  <h1>Tenor GIF/Sticker Tester</h1>
+  <h1>Tenor GIF/Sticker</h1>
 
   <!-- API KEY INPUT -->
   <div class="api-key-block">
@@ -17,7 +17,6 @@
         type="password"
         id="apikey"
         placeholder="Paste your Tenor API key"
-        required
       />
     </label>
   </div>
@@ -36,24 +35,6 @@
     </label>
   </fieldset>
 
-  <!-- Search input -->
-  <div id="search-input-block">
-    <input type="text" id="query" placeholder="Search..."/>
-  </div>
-
-    <label>
-      Content filter:
-      <select id="contentfilter">
-        <option value="off">off (no filter)</option>
-        <option value="low">low</option>
-        <option value="medium">medium</option>
-        <option value="high">high</option>
-      </select>
-    </label>
-
-    <!-- limit захардкожен -->
-    <span>Per page: <strong>50</strong></span>
-
     <!-- GIF / Stickers toggle -->
     <fieldset class="type-toggle">
       <legend>Type:</legend>
@@ -66,6 +47,21 @@
         Stickers
       </label>
     </fieldset>
+
+    <!-- Search input -->
+    <div id="search-input-block">
+      <input type="text" id="query" placeholder="Search..."/>
+    </div>
+
+    <label>
+      Content filter:
+      <select id="contentfilter">
+        <option value="off">off (no filter)</option>
+        <option value="low">low</option>
+        <option value="medium">medium</option>
+        <option value="high">high</option>
+      </select>
+    </label>
 
     <button type="submit">Load</button>
   </form>

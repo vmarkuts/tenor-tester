@@ -32,14 +32,15 @@ h1 {
 /* Form layout */
 form {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
+  flex-direction: column; 
+  gap: 12px;              
+  align-items: flex-start; 
   margin-bottom: 15px;
 }
 
+
 #search-input-block {
-  display: block; /* прячем/показываем через JS */
+  display: block;
 }
 
 input[type="text"] {
@@ -119,11 +120,23 @@ button {
   display: block;
 }
 
+input[type="text"],
+input[type="password"],
+select,
+button {
+  font-size: 16px; 
+  line-height: 1.2;
+}
+
+/* ---------- MOBILE OPTIMIZATION ---------- */
+
 /* ---------- MOBILE OPTIMIZATION ---------- */
 
 @media (max-width: 768px) {
+
   body {
     margin: 12px;
+    padding-bottom: 70px; /* место под нижний бар */
   }
 
   form {
@@ -147,23 +160,44 @@ button {
     flex-wrap: wrap;
   }
 
+  /* bottom fixed pagination */
   #pagination {
-    width: 100%;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 8px 12px;
+    background: #111;
+    border-top: 1px solid #333;
+    display: flex;
+    gap: 8px;
     justify-content: space-between;
+    z-index: 100;
   }
 
   #pagination button {
     flex: 1 1 auto;
     text-align: center;
   }
-}
 
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.3rem;
+  /* Bigger Load button */
+  #search-form button[type="submit"] {
+    width: 100%;
+    font-size: 18px;
+    padding: 14px;
+    border-radius: 10px;
+    box-sizing: border-box;
   }
 
-  #results {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  }
 }
+
+/* for iPhone Safari anti-zoom */
+input[type="text"],
+input[type="password"],
+select,
+button {
+  font-size: 16px;
+  line-height: 1.2;
+}
+

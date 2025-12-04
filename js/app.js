@@ -159,15 +159,31 @@ async function performSearch(options, reset = false) {
 
     results.forEach((item) => {
       const mf = item.media_formats || {};
-      const media =
-        mf.tinygif ||
-        mf.gif ||
-        mf.mediumgif ||
-        mf.nanogif ||
-        mf.preview;
+      let media;
 
-      if (!media || !media.url) return;
+      // Strict transparency for stickers
+      if (kind === "sticker") {
+        media =
+          mf.webp_transparent ||
+          mf.webp ||
+          mf.gif_transparent ||
+          null; // no fallback — if no transparency, don't show the sticker
+      } else {
+        // Normal GIF mode — allow all formats
+        media =
+          mf.webp_transparent ||
+          mf.webp ||
+          mf.gif_transparent ||
+          mf.tinygif ||
+          mf.gif ||
+          mf.mediumgif ||
+          mf.nanogif ||
+          mf.preview;
+      }
 
+      if (!media || !media.url) {
+        return; // skip items that have no transparent sticker
+      }
       const div = document.createElement("div");
       div.className = "item";
       const img = document.createElement("img");
@@ -194,6 +210,21 @@ loadSettings();
 
 // update visibility of input according to current/saved mode 
 updateSearchInputVisibility();
+
+// auto-load trending on start if apiKey exists and mode is trending
+(function autoLoadTrendingOnStart() {
+  const apiKey = apiKeyInput.value.trim();
+  const mode = getSelectedMode();
+  const contentfilter = contentFilterSelect.value;
+  const kind = getSelectedKind();
+  const q = queryInput.value.trim();
+
+  if (!apiKey) return;
+  if (mode !== "trending") return;
+
+  lastQueryOptions = { apiKey, q, contentfilter, kind, mode };
+  performSearch(lastQueryOptions, true);
+})();
 
 // react to mode change
 document.querySelectorAll('input[name="mode"]').forEach((el) => {
