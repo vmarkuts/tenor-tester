@@ -1,5 +1,6 @@
 const SEARCH_URL = "https://tenor.googleapis.com/v2/search";
-const TRENDING_URL = "https://tenor.googleapis.com/v2/trending";
+const FEATURED_URL = "https://tenor.googleapis.com/v2/featured";
+
 const CLIENT_KEY = "tenor-tester-front-only";
 const LIMIT = 50;
 const STORAGE_KEY = "tenorTesterSettings";
@@ -138,7 +139,7 @@ async function performSearch(options, reset = false) {
     params.set("pos", currentPos);
   }
 
-  const baseUrl = mode === "search" ? SEARCH_URL : TRENDING_URL;
+  const baseUrl = mode === "search" ? SEARCH_URL : FEATURED_URL;
 
   try {
     const resp = await fetch(`${baseUrl}?${params.toString()}`);

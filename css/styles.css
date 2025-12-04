@@ -18,8 +18,10 @@ h1 {
 }
 
 .api-key-block input[type="password"] {
-  padding: 6px 8px;
+  padding: 8px 10px;
   min-width: 260px;
+  max-width: 400px;
+  width: 100%;
 }
 
 .api-key-block small {
@@ -27,6 +29,7 @@ h1 {
   opacity: 0.8;
 }
 
+/* Form layout */
 form {
   display: flex;
   flex-wrap: wrap;
@@ -35,9 +38,15 @@ form {
   margin-bottom: 15px;
 }
 
+#search-input-block {
+  display: block; /* прячем/показываем через JS */
+}
+
 input[type="text"] {
-  padding: 6px 8px;
+  padding: 8px 10px;
   min-width: 200px;
+  max-width: 320px;
+  width: 100%;
 }
 
 select,
@@ -50,7 +59,8 @@ button {
   cursor: pointer;
 }
 
-/* GIF / Sticker toggle */
+/* Mode & type toggle blocks */
+.mode-toggle,
 .type-toggle {
   border: 1px solid #333;
   border-radius: 8px;
@@ -60,6 +70,7 @@ button {
   gap: 10px;
 }
 
+.mode-toggle legend,
 .type-toggle legend {
   padding: 0 4px;
   font-size: 0.9em;
@@ -108,17 +119,51 @@ button {
   display: block;
 }
 
-.mode-toggle {
-  border: 1px solid #333;
-  border-radius: 8px;
-  padding: 4px 8px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* ---------- MOBILE OPTIMIZATION ---------- */
+
+@media (max-width: 768px) {
+  body {
+    margin: 12px;
+  }
+
+  form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .api-key-block input[type="password"],
+  #search-input-block input[type="text"],
+  select,
+  button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .mode-toggle,
+  .type-toggle {
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  #pagination {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  #pagination button {
+    flex: 1 1 auto;
+    text-align: center;
+  }
 }
 
-.mode-toggle legend {
-  padding: 0 4px;
-  font-size: 0.9em;
-  opacity: 0.8;
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  #results {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
 }
